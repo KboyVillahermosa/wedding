@@ -3,7 +3,7 @@ import WeddingDetails from '../../components/WeddingDetails';
 
 export default function DetailsPage() {
   return (
-    <div>
+    <div className="min-h-screen bg-white">
       <Navbar />
       <WeddingDetails />
     </div>
