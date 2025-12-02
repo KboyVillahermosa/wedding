@@ -30,70 +30,108 @@ export default function WeddingDetails() {
     return allImages.indexOf(imagePath);
   };
   return (
-    <div className="relative min-h-screen bg-white py-24">
+    <div className="relative min-h-screen py-24 z-10">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         
         {/* Header */}
-        <div className="text-center mb-24">
-          <h1 className="font-playfair text-5xl lg:text-6xl font-bold mb-4 text-emerald-900">
-            Wedding Details
+        <div className="text-center mb-24 relative">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 text-4xl opacity-20 animate-float">💐</div>
+          <h1 className="font-playfair text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-rose-500 bg-clip-text text-transparent">
+              Wedding Details
+            </span>
           </h1>
-          <div className="font-dancing text-3xl text-emerald-700 mb-3">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
+            <span className="text-emerald-400 text-2xl">❦</span>
+            <div className="w-16 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
+          </div>
+          <div className="font-dancing text-3xl lg:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-3">
             Thursday, February 12, 2026
           </div>
-          <p className="font-poppins text-lg text-emerald-800">
+          <p className="font-poppins text-lg text-emerald-800 flex items-center justify-center gap-2">
+            <span>📍</span>
             Cebu, Philippines
           </p>
         </div>
 
         {/* Story Section - Placeholder for Our Story */}
-        <section id="story" className="mb-32">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="font-playfair text-4xl font-bold mb-8 text-emerald-900">
-              Our Story
+        <section id="story" className="mb-32 relative">
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 text-6xl opacity-5">💕</div>
+          <div className="absolute right-0 top-1/2 transform -translate-y-1/2 text-6xl opacity-5">💖</div>
+          <div className="text-center max-w-3xl mx-auto relative z-10">
+            <div className="inline-block mb-6">
+              <span className="text-4xl animate-float">💑</span>
+            </div>
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-emerald-700 to-rose-500 bg-clip-text text-transparent">
+                Our Story
+              </span>
             </h2>
-            <p className="font-poppins text-lg text-emerald-800 leading-relaxed">
-              Two hearts, one journey. Karen and Erin are excited to share their special day with you.
-            </p>
+            <div className="bg-gradient-to-br from-emerald-50/50 via-rose-50/30 to-emerald-50/50 rounded-3xl p-8 lg:p-12 border border-emerald-100/50 shadow-lg elegant-card">
+              <p className="font-poppins text-lg lg:text-xl text-emerald-800 leading-relaxed">
+                Two hearts, one journey. Karen and Erin are excited to share their special day with you.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Schedule Section */}
-        <section id="schedule" className="mb-32">
-          <h2 className="font-playfair text-4xl font-bold text-center mb-16 text-emerald-900">
-            Schedule
-          </h2>
+        <section id="schedule" className="mb-32 relative">
+          <div className="text-center mb-16 relative">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 text-3xl opacity-20 animate-float">⏰</div>
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold">
+              <span className="bg-gradient-to-r from-emerald-700 to-rose-500 bg-clip-text text-transparent">
+                Schedule
+              </span>
+            </h2>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
+              <span className="text-emerald-400">❦</span>
+              <div className="w-20 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
+            </div>
+          </div>
           
           <div className="space-y-24">
             
             {/* Ceremony - Details Left, Map Right */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="text-center lg:text-left space-y-6 order-2 lg:order-1">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 rounded-full mb-4">
-                  <span className="text-2xl">⛪</span>
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="text-center lg:text-left space-y-6 order-2 lg:order-1 relative">
+                <div className="absolute -left-4 top-0 text-2xl opacity-10 animate-float">⛪</div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-4 shadow-md">
+                  <span className="text-3xl">⛪</span>
                 </div>
-                <h3 className="font-playfair text-3xl lg:text-4xl font-bold text-emerald-900">
+                <h3 className="font-playfair text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-600 bg-clip-text text-transparent">
                   Ceremony
                 </h3>
-                <p className="font-dancing text-2xl text-emerald-700">3:30 PM</p>
-                <p className="font-poppins text-emerald-800 leading-relaxed max-w-md mx-auto lg:mx-0">
-                  The Archdiocesan Shrine of the Most Sacred Heart of Jesus<br />
-                  Dionisio Jakosalem Street<br />
-                  Cebu City, Cebu, Philippines
-                </p>
+                <p className="font-dancing text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500">3:30 PM</p>
+                <div className="bg-gradient-to-br from-emerald-50/50 to-rose-50/30 rounded-2xl p-6 border border-emerald-100/50 shadow-md elegant-card">
+                  <p className="font-poppins text-emerald-800 leading-relaxed max-w-md mx-auto lg:mx-0">
+                    The Archdiocesan Shrine of the Most Sacred Heart of Jesus<br />
+                    Dionisio Jakosalem Street<br />
+                    Cebu City, Cebu, Philippines
+                  </p>
+                </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
-                  <button className="bg-emerald-700 hover:bg-emerald-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-colors duration-200 text-sm">
-                    Add to Calendar
+                  <button className="group bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
+                    <span className="flex items-center gap-2">
+                      Add to Calendar
+                      <span className="group-hover:rotate-12 transition-transform">📅</span>
+                    </span>
                   </button>
-                  <button className="border border-emerald-700 text-emerald-700 hover:bg-emerald-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-colors duration-200 text-sm">
-                    Directions
+                  <button className="group border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
+                    <span className="flex items-center gap-2">
+                      Directions
+                      <span className="group-hover:translate-x-1 transition-transform">🗺️</span>
+                    </span>
                   </button>
                 </div>
               </div>
               
-              <div className="order-1 lg:order-2">
-                <div className="rounded-xl overflow-hidden shadow-lg border border-emerald-100">
+              <div className="order-1 lg:order-2 relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-emerald-200 to-rose-200 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity"></div>
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-emerald-100/50 group-hover:border-emerald-200 transition-all duration-300 elegant-card">
                   <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.411722063622!2d123.8990527!3d10.3088973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99945a8c6b021%3A0x8b5d0f001d6ce9a1!2sThe%20Archdiocesan%20Shrine%20of%20the%20Most%20Sacred%20Heart%20of%20Jesus!5e0!3m2!1sen!2sph!4v1763813453445!5m2!1sen!2sph" 
                     width="100%" 
@@ -110,8 +148,9 @@ export default function WeddingDetails() {
             
             {/* Reception - Map Left, Details Right */}
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-1 lg:order-1">
-                <div className="rounded-xl overflow-hidden shadow-lg border border-emerald-100">
+              <div className="order-1 lg:order-1 relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-rose-200 to-emerald-200 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity"></div>
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-rose-100/50 group-hover:border-rose-200 transition-all duration-300 elegant-card">
                   <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.3122502826704!2d123.9070653!3d10.316876500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a9993fc3a711d9%3A0xcb00638c2527d30a!2sCity%20Sports%20Club%20Cebu%2C%20Inc.!5e0!3m2!1sen!2sph!4v1763813478244!5m2!1sen!2sph" 
                     width="100%" 
@@ -125,26 +164,35 @@ export default function WeddingDetails() {
                 </div>
               </div>
               
-              <div className="text-center lg:text-left space-y-6 order-2 lg:order-2">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 rounded-full mb-4">
-                  <span className="text-2xl">🥂</span>
+              <div className="text-center lg:text-left space-y-6 order-2 lg:order-2 relative">
+                <div className="absolute -right-4 top-0 text-2xl opacity-10 animate-float">🥂</div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full mb-4 shadow-md">
+                  <span className="text-3xl">🥂</span>
                 </div>
-                <h3 className="font-playfair text-3xl lg:text-4xl font-bold text-emerald-900">
+                <h3 className="font-playfair text-3xl lg:text-4xl font-bold bg-gradient-to-r from-rose-600 to-rose-500 bg-clip-text text-transparent">
                   Reception
                 </h3>
-                <p className="font-dancing text-2xl text-emerald-700">5:00 PM</p>
-                <p className="font-poppins text-emerald-800 leading-relaxed max-w-md mx-auto lg:mx-0">
-                  City Sports Club Cebu, Inc.<br />
-                  Cardinal Rosales Avenue<br />
-                  Cebu City, Cebu, Philippines
-                </p>
+                <p className="font-dancing text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-emerald-600">5:00 PM</p>
+                <div className="bg-gradient-to-br from-rose-50/50 to-emerald-50/30 rounded-2xl p-6 border border-rose-100/50 shadow-md elegant-card">
+                  <p className="font-poppins text-emerald-800 leading-relaxed max-w-md mx-auto lg:mx-0">
+                    City Sports Club Cebu, Inc.<br />
+                    Cardinal Rosales Avenue<br />
+                    Cebu City, Cebu, Philippines
+                  </p>
+                </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
-                  <button className="bg-emerald-700 hover:bg-emerald-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-colors duration-200 text-sm">
-                    Add to Calendar
+                  <button className="group bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
+                    <span className="flex items-center gap-2">
+                      Add to Calendar
+                      <span className="group-hover:rotate-12 transition-transform">📅</span>
+                    </span>
                   </button>
-                  <button className="border border-emerald-700 text-emerald-700 hover:bg-emerald-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-colors duration-200 text-sm">
-                    Directions
+                  <button className="group border-2 border-rose-600 text-rose-700 hover:bg-rose-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
+                    <span className="flex items-center gap-2">
+                      Directions
+                      <span className="group-hover:translate-x-1 transition-transform">🗺️</span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -154,29 +202,42 @@ export default function WeddingDetails() {
         </section>
 
         {/* Dress Code Section */}
-        <section id="dress-code" className="mb-32">
-          <h2 className="font-playfair text-4xl font-bold text-center mb-16 text-emerald-900">
-            Motif & Dress Code
-          </h2>
+        <section id="dress-code" className="mb-32 relative">
+          <div className="text-center mb-16 relative">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 text-3xl opacity-20 animate-float">👗</div>
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold">
+              <span className="bg-gradient-to-r from-emerald-700 to-rose-500 bg-clip-text text-transparent">
+                Motif & Dress Code
+              </span>
+            </h2>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
+              <span className="text-emerald-400">❦</span>
+              <div className="w-20 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
+            </div>
+          </div>
           
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
             {/* The Gents */}
             <div className="text-center">
               <div 
-                className="relative overflow-hidden rounded-xl mb-6 shadow-md cursor-pointer hover:shadow-xl transition-all group"
+                className="relative overflow-hidden rounded-2xl mb-6 shadow-lg cursor-pointer group elegant-card border-2 border-emerald-100/50"
                 onClick={() => openModal(getImageIndex('/mens-attire.jpg'))}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/20 to-transparent z-10"></div>
                 <Image 
                   src="/mens-attire.jpg" 
                   alt="Men's Wedding Attire Inspiration"
                   width={400}
                   height={320}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                  <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:from-black/50 transition-all duration-300 flex items-center justify-center z-20">
+                  <div className="bg-white/90 rounded-full p-4 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                    <svg className="w-8 h-8 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h3 className="font-playfair text-2xl font-bold mb-3 text-emerald-900">
@@ -195,20 +256,23 @@ export default function WeddingDetails() {
             {/* The Ladies */}
             <div className="text-center">
               <div 
-                className="relative overflow-hidden rounded-xl mb-6 shadow-md cursor-pointer hover:shadow-xl transition-all group"
+                className="relative overflow-hidden rounded-2xl mb-6 shadow-lg cursor-pointer group elegant-card border-2 border-rose-100/50"
                 onClick={() => openModal(getImageIndex('/womens-attire.jpg'))}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-200/20 to-transparent z-10"></div>
                 <Image 
                   src="/womens-attire.jpg" 
                   alt="Women's Wedding Attire Inspiration"
                   width={400}
                   height={320}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                  <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:from-black/50 transition-all duration-300 flex items-center justify-center z-20">
+                  <div className="bg-white/90 rounded-full p-4 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                    <svg className="w-8 h-8 text-rose-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h3 className="font-playfair text-2xl font-bold mb-3 text-emerald-900">
@@ -227,20 +291,23 @@ export default function WeddingDetails() {
             {/* Color Palette */}
             <div className="text-center">
               <div 
-                className="relative overflow-hidden rounded-xl mb-6 shadow-md cursor-pointer hover:shadow-xl transition-all group"
+                className="relative overflow-hidden rounded-2xl mb-6 shadow-lg cursor-pointer group elegant-card border-2 border-amber-100/50"
                 onClick={() => openModal(getImageIndex('/color-palette.jpg'))}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-200/20 to-emerald-200/20 z-10"></div>
                 <Image 
                   src="/color-palette.jpg" 
                   alt="Wedding Color Palette Inspiration"
                   width={400}
                   height={320}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                  <svg className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:from-black/50 transition-all duration-300 flex items-center justify-center z-20">
+                  <div className="bg-white/90 rounded-full p-4 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+                    <svg className="w-8 h-8 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h3 className="font-playfair text-2xl font-bold mb-3 text-emerald-900">
@@ -253,10 +320,15 @@ export default function WeddingDetails() {
           </div>
 
           {/* Style Guidelines */}
-          <div className="bg-emerald-50/50 rounded-2xl p-8 border border-emerald-100">
-            <h4 className="font-playfair text-2xl font-bold text-center mb-8 text-emerald-900">
-              Style Guidelines
-            </h4>
+          <div className="bg-gradient-to-br from-emerald-50/70 via-rose-50/40 to-emerald-50/70 rounded-3xl p-8 lg:p-10 border-2 border-emerald-100/50 shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-rose-200/20 rounded-full blur-2xl"></div>
+            <div className="relative z-10">
+              <h4 className="font-playfair text-2xl lg:text-3xl font-bold text-center mb-8">
+                <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
+                  Style Guidelines
+                </span>
+              </h4>
             <div className="grid md:grid-cols-2 gap-8 text-emerald-700">
               <div>
                 <h5 className="font-poppins font-semibold text-emerald-900 mb-4 flex items-center">
@@ -285,24 +357,35 @@ export default function WeddingDetails() {
                 </ul>
               </div>
             </div>
+            </div>
           </div>
         </section>
 
         {/* Q&A Section */}
-        <section id="qa" className="mb-32">
-          <h2 className="font-playfair text-4xl font-bold text-center mb-4 text-emerald-900">
-            Q & A
-          </h2>
-          <p className="font-dancing text-xl text-center mb-12 text-emerald-700">
-            For all our friends and family who have lots of questions,<br />
-            please check out our Q & A first!
-          </p>
+        <section id="qa" className="mb-32 relative">
+          <div className="text-center mb-12 relative">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 text-3xl opacity-20 animate-float">❓</div>
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-emerald-700 to-rose-500 bg-clip-text text-transparent">
+                Q & A
+              </span>
+            </h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
+              <span className="text-emerald-400">❦</span>
+              <div className="w-16 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
+            </div>
+            <p className="font-dancing text-xl lg:text-2xl text-center text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500">
+              For all our friends and family who have lots of questions,<br />
+              please check out our Q & A first!
+            </p>
+          </div>
           
           <div className="space-y-6">
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">📅</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">📅</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">When is the RSVP deadline?</h4>
@@ -311,10 +394,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-rose-50/30 border-2 border-rose-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">💑</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">💑</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Can I bring a date?</h4>
@@ -323,10 +406,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">👶</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">👶</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Are kids welcome?</h4>
@@ -335,10 +418,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-amber-50/30 border-2 border-amber-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">☀️</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">☀️</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">What will the weather be like?</h4>
@@ -347,10 +430,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">🚗</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">🚗</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Where should I park?</h4>
@@ -359,10 +442,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-rose-50/30 border-2 border-rose-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">👗</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">👗</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">What should I wear?</h4>
@@ -371,10 +454,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">🏠</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">🏠</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Is the wedding indoors or outdoors?</h4>
@@ -383,10 +466,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-amber-50/30 border-2 border-amber-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">📸</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">📸</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Is it okay to take pictures with our phones and cameras during the wedding?</h4>
@@ -395,10 +478,10 @@ export default function WeddingDetails() {
               </div>
             </div>
 
-            <div className="bg-white border border-emerald-100 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div className="bg-gradient-to-br from-white to-emerald-50/30 border-2 border-emerald-100/50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 elegant-card group">
               <div className="flex items-start gap-4">
-                <div className="shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <span className="text-lg">📞</span>
+                <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                  <span className="text-xl">📞</span>
                 </div>
                 <div className="flex-1">
                   <h4 className="font-playfair text-lg font-bold text-emerald-900 mb-2">Whom should I call with questions?</h4>
@@ -410,38 +493,44 @@ export default function WeddingDetails() {
         </section>
 
         {/* Gift Registry Section */}
-        <section className="mb-32">
-          <div className="bg-emerald-50/50 rounded-2xl p-10 border border-emerald-100 text-center">
-            <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 rounded-full mb-6">
-              <span className="text-2xl">🎁</span>
-            </div>
-            <h3 className="font-playfair text-4xl font-bold mb-4 text-emerald-900">
-              Gift Registry
-            </h3>
-            <p className="font-dancing text-xl text-emerald-700 mb-2">
-              Your presence is the greatest gift of all
-            </p>
-            <p className="font-poppins text-emerald-800 mb-8 max-w-2xl mx-auto leading-relaxed">
-              We do not have a gift registry, but if you wish to bless us further, we would be delighted to receive a monetary gift.
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="bg-white p-6 rounded-xl border border-emerald-100">
-                <h4 className="font-poppins font-semibold text-emerald-900 mb-2">BPI</h4>
-                <p className="font-poppins text-sm text-emerald-800">9119451679</p>
-                <p className="font-poppins text-sm text-emerald-800">Karen Campos / Erin John Alfrey Baysa</p>
+        <section className="mb-32 relative">
+          <div className="bg-gradient-to-br from-emerald-50/70 via-rose-50/40 to-amber-50/30 rounded-3xl p-10 lg:p-12 border-2 border-emerald-100/50 text-center shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl"></div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-6 shadow-lg animate-float">
+                <span className="text-3xl">🎁</span>
+              </div>
+              <h3 className="font-playfair text-4xl lg:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
+                  Gift Registry
+                </span>
+              </h3>
+              <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2">
+                Your presence is the greatest gift of all
+              </p>
+              <p className="font-poppins text-emerald-800 mb-8 max-w-2xl mx-auto leading-relaxed">
+                We do not have a gift registry, but if you wish to bless us further, we would be delighted to receive a monetary gift.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 text-left mt-8">
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-emerald-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-emerald-900 mb-3 text-lg">BPI</h4>
+                <p className="font-poppins text-sm text-emerald-800 font-mono">9119451679</p>
+                <p className="font-poppins text-sm text-emerald-800 mt-2">Karen Campos / Erin John Alfrey Baysa</p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl border border-emerald-100">
-                <h4 className="font-poppins font-semibold text-emerald-900 mb-2">BDO</h4>
-                <p className="font-poppins text-sm text-emerald-800">0043 7137 4169</p>
-                <p className="font-poppins text-sm text-emerald-800">Erin John Alfrey Baysa</p>
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-rose-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-rose-900 mb-3 text-lg">BDO</h4>
+                <p className="font-poppins text-sm text-emerald-800 font-mono">0043 7137 4169</p>
+                <p className="font-poppins text-sm text-emerald-800 mt-2">Erin John Alfrey Baysa</p>
               </div>
               
-              <div className="bg-white p-6 rounded-xl border border-emerald-100">
-                <h4 className="font-poppins font-semibold text-emerald-900 mb-2">E-transfer</h4>
-                <p className="font-poppins text-sm text-emerald-800">karenncamps@gmail.com</p>
-                <p className="font-poppins text-sm text-emerald-800">613-863-1218 (Karen Campos)</p>
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-amber-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-amber-900 mb-3 text-lg">E-transfer</h4>
+                <p className="font-poppins text-sm text-emerald-800 font-mono">karenncamps@gmail.com</p>
+                <p className="font-poppins text-sm text-emerald-800 mt-2">613-863-1218 (Karen Campos)</p>
+              </div>
               </div>
             </div>
           </div>

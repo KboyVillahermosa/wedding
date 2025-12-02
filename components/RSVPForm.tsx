@@ -85,49 +85,70 @@ export default function RSVPForm() {
 
   if (submitStatus === 'success') {
     return (
-      <div className="bg-emerald-50/50 rounded-2xl p-12 border border-emerald-100 text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-emerald-100 rounded-full mb-6">
-          <span className="text-4xl">✓</span>
+      <div className="bg-gradient-to-br from-emerald-50/70 via-rose-50/40 to-emerald-50/70 rounded-3xl p-12 border-2 border-emerald-100/50 text-center shadow-xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl"></div>
+        <div className="relative z-10">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-6 shadow-lg animate-float">
+            <span className="text-5xl">✓</span>
+          </div>
+          <h3 className="font-playfair text-4xl lg:text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
+              Thank You!
+            </span>
+          </h3>
+          <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2">
+            We&apos;ve received your RSVP
+          </p>
+          <p className="font-poppins text-lg text-emerald-800 mb-8">
+            We can&apos;t wait to celebrate with you! 💕
+          </p>
+          <button
+            onClick={() => setSubmitStatus('idle')}
+            className="group inline-block bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-poppins font-semibold text-lg px-12 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl btn-romantic"
+          >
+            <span className="flex items-center gap-2">
+              Submit Another RSVP
+              <span className="group-hover:rotate-12 transition-transform">💌</span>
+            </span>
+          </button>
         </div>
-        <h3 className="font-playfair text-4xl font-bold mb-4 text-emerald-900">
-          Thank You!
-        </h3>
-        <p className="font-dancing text-xl text-emerald-700 mb-2">
-          We&apos;ve received your RSVP
-        </p>
-        <p className="font-poppins text-lg text-emerald-800 mb-8">
-          We can&apos;t wait to celebrate with you!
-        </p>
-        <button
-          onClick={() => setSubmitStatus('idle')}
-          className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white font-poppins font-semibold text-lg px-12 py-4 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg"
-        >
-          Submit Another RSVP
-        </button>
       </div>
     );
   }
 
   return (
-    <div className="bg-emerald-50/50 rounded-2xl p-8 lg:p-12 border border-emerald-100">
-      <div className="inline-flex items-center justify-center w-14 h-14 bg-emerald-100 rounded-full mb-6 mx-auto">
-        <span className="text-2xl">💌</span>
-      </div>
-      <h3 className="font-playfair text-4xl font-bold mb-4 text-center text-emerald-900">
-        Ready to Celebrate?
-      </h3>
-      <p className="font-dancing text-xl text-emerald-700 mb-2 text-center">
-        We can&apos;t wait to celebrate with you!
-      </p>
-      <p className="font-poppins text-lg text-emerald-800 mb-8 text-center">
-        Please RSVP by December 19th
-      </p>
+    <div className="bg-gradient-to-br from-emerald-50/70 via-rose-50/40 to-emerald-50/70 rounded-3xl p-8 lg:p-12 border-2 border-emerald-100/50 shadow-xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl"></div>
+      <div className="relative z-10">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-100 to-rose-100 rounded-full mb-6 mx-auto shadow-lg animate-float">
+          <span className="text-3xl">💌</span>
+        </div>
+        <h3 className="font-playfair text-4xl lg:text-5xl font-bold mb-4 text-center">
+          <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
+            Ready to Celebrate?
+          </span>
+        </h3>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
+          <span className="text-emerald-400">❦</span>
+          <div className="w-16 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
+        </div>
+        <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2 text-center">
+          We can&apos;t wait to celebrate with you!
+        </p>
+        <p className="font-poppins text-lg text-emerald-800 mb-8 text-center flex items-center justify-center gap-2">
+          <span>📅</span>
+          Please RSVP by December 19th
+        </p>
 
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block font-poppins font-medium text-emerald-900 mb-2">
-            Your Name <span className="text-emerald-600">*</span>
+          <label htmlFor="name" className="block font-poppins font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+            <span>👤</span>
+            Your Name <span className="text-rose-500">*</span>
           </label>
           <input
             type="text"
@@ -136,15 +157,16 @@ export default function RSVPForm() {
             value={formData.name}
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-emerald-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-poppins text-emerald-900"
+            className="w-full px-5 py-3.5 rounded-xl border-2 border-emerald-200/50 bg-white/80 backdrop-blur-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200/50 outline-none font-poppins text-emerald-900 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg"
             placeholder="Enter your full name"
           />
         </div>
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block font-poppins font-medium text-emerald-900 mb-2">
-            Email <span className="text-emerald-600">*</span>
+          <label htmlFor="email" className="block font-poppins font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+            <span>📧</span>
+            Email <span className="text-rose-500">*</span>
           </label>
           <input
             type="email"
@@ -153,14 +175,15 @@ export default function RSVPForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="w-full px-4 py-3 rounded-lg border border-emerald-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-poppins text-emerald-900"
+            className="w-full px-5 py-3.5 rounded-xl border-2 border-emerald-200/50 bg-white/80 backdrop-blur-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200/50 outline-none font-poppins text-emerald-900 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg"
             placeholder="your.email@example.com"
           />
         </div>
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block font-poppins font-medium text-emerald-900 mb-2">
+          <label htmlFor="message" className="block font-poppins font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+            <span>💬</span>
             Message (optional)
           </label>
           <textarea
@@ -169,15 +192,18 @@ export default function RSVPForm() {
             value={formData.message}
             onChange={handleInputChange}
             rows={4}
-            className="w-full px-4 py-3 rounded-lg border border-emerald-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none font-poppins text-emerald-900 resize-none"
+            className="w-full px-5 py-3.5 rounded-xl border-2 border-emerald-200/50 bg-white/80 backdrop-blur-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200/50 outline-none font-poppins text-emerald-900 resize-none transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg"
             placeholder="Leave us a message..."
           />
         </div>
 
         {/* Error Message */}
         {submitStatus === 'error' && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <p className="font-poppins text-sm text-red-800">{errorMessage}</p>
+          <div className="bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 rounded-xl p-4 shadow-md">
+            <p className="font-poppins text-sm text-red-800 flex items-center gap-2">
+              <span>⚠️</span>
+              {errorMessage}
+            </p>
           </div>
         )}
 
@@ -186,12 +212,25 @@ export default function RSVPForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-emerald-700 hover:bg-emerald-800 disabled:bg-emerald-400 disabled:cursor-not-allowed text-white font-poppins font-semibold text-lg px-12 py-4 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg"
+            className="group w-full bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 hover:from-emerald-700 hover:via-emerald-800 hover:to-emerald-700 disabled:from-emerald-300 disabled:via-emerald-300 disabled:to-emerald-300 disabled:cursor-not-allowed text-white font-poppins font-semibold text-lg px-12 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl btn-romantic disabled:shadow-none"
           >
-            {isSubmitting ? 'Submitting...' : 'Submit RSVP'}
+            <span className="flex items-center justify-center gap-2">
+              {isSubmitting ? (
+                <>
+                  <span className="animate-spin">⏳</span>
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  Submit RSVP
+                  <span className="group-hover:translate-x-1 transition-transform">✨</span>
+                </>
+              )}
+            </span>
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }

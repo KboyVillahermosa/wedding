@@ -3,6 +3,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+  --rose-50: #fff1f2;
+  --rose-100: #ffe4e6;
+  --rose-200: #fecdd3;
+  --rose-300: #fda4af;
+  --rose-400: #fb7185;
+  --rose-500: #f43f5e;
+  --rose-600: #e11d48;
 }
 
 @theme inline {
@@ -13,13 +30,29 @@
   --font-script: var(--font-dancing);
 }
 
-
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #fefefe 0%, #f9fafb 50%, #f0fdf4 100%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(236, 253, 245, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 241, 242, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(254, 243, 199, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Custom font utilities */
@@ -45,4 +78,189 @@ html {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Decorative divider */
+.decorative-divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.decorative-divider::before,
+.decorative-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(16, 185, 129, 0.3), transparent);
+}
+
+.decorative-divider::before {
+  left: 0;
+}
+
+.decorative-divider::after {
+  right: 0;
+}
+
+.decorative-divider span {
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color: rgba(16, 185, 129, 0.6);
+}
+
+/* Romantic gradient backgrounds */
+.romantic-gradient {
+  background: linear-gradient(135deg, #ecfdf5 0%, #fef3c7 50%, #fce7f3 100%);
+}
+
+.romantic-gradient-strong {
+  background: linear-gradient(135deg, #d1fae5 0%, #fde68a 30%, #fbcfe8 100%);
+}
+
+/* Elegant card hover effect */
+.elegant-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.elegant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Button enhancements */
+.btn-romantic {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-romantic::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-romantic:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-romantic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3);
+}
+
+/* Floral decorative pattern */
+.floral-pattern {
+  position: relative;
+}
+
+.floral-pattern::before {
+  content: '❀';
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.1;
+  color: #059669;
+}
+
+/* Section spacing with decorative elements */
+.section-divider {
+  position: relative;
+  padding: 4rem 0;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #10b981, transparent);
+}
+
+/* Scroll reveal animation */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
