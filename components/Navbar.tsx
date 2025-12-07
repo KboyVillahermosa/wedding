@@ -64,7 +64,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b-2 border-emerald-100/50 shadow-sm">
+    <nav className=" top-0 left-0 right-0  bg-white/90 backdrop-blur-lg border-b-2 border-emerald-100/50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="font-dancing text-2xl font-semibold lg:text-3xl tracking-wide transition-all duration-300 group">

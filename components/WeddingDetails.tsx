@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ImageModal from './ImageModal';
 import RSVPForm from './RSVPForm';
@@ -8,6 +8,10 @@ import RSVPForm from './RSVPForm';
 export default function WeddingDetails() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [selectedPaymentImage, setSelectedPaymentImage] = useState('');
+  const [selectedPaymentTitle, setSelectedPaymentTitle] = useState('');
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // All images for the carousel
   const allImages = [
@@ -29,6 +33,62 @@ export default function WeddingDetails() {
   const getImageIndex = (imagePath: string) => {
     return allImages.indexOf(imagePath);
   };
+
+  // Add to Calendar function - opens Google Calendar
+  const addToCalendar = (eventType: 'ceremony' | 'reception') => {
+    const ceremonyEvent = {
+      title: 'Karen & Erin Wedding - Ceremony',
+      date: '20260212',
+      startTime: '153000',
+      endTime: '173000',
+      location: 'The Archdiocesan Shrine of the Most Sacred Heart of Jesus, Dionisio Jakosalem Street, Cebu City, Cebu, Philippines',
+      description: 'Wedding Ceremony - Karen and Erin',
+    };
+
+    const receptionEvent = {
+      title: 'Karen & Erin Wedding - Reception',
+      date: '20260212',
+      startTime: '170000',
+      endTime: '230000',
+      location: 'City Sports Club Cebu, Inc., Cardinal Rosales Avenue, Cebu City, Cebu, Philippines',
+      description: 'Wedding Reception - Karen and Erin',
+    };
+
+    const event = eventType === 'ceremony' ? ceremonyEvent : receptionEvent;
+
+    // Format dates for Google Calendar URL
+    const startDateTime = `${event.date}T${event.startTime}`;
+    const endDateTime = `${event.date}T${event.endTime}`;
+
+    // Create Google Calendar URL
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDateTime}Z/${endDateTime}Z&location=${encodeURIComponent(event.location)}&details=${encodeURIComponent(event.description)}`;
+
+    window.open(googleCalendarUrl, '_blank');
+  };
+
+  // Directions function
+  const openDirections = (venueName: string, coordinates: string) => {
+    window.open(`https://www.google.com/maps/search/${encodeURIComponent(venueName)}/@${coordinates},13z`, '_blank');
+  };
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="relative min-h-screen py-24 z-10">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -114,13 +174,13 @@ export default function WeddingDetails() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
-                  <button className="group bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
+                  <button onClick={() => addToCalendar('ceremony')} className="group bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
                     <span className="flex items-center gap-2">
                       Add to Calendar
                       <span className="group-hover:rotate-12 transition-transform">📅</span>
                     </span>
                   </button>
-                  <button className="group border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
+                  <button onClick={() => openDirections('The Archdiocesan Shrine of the Most Sacred Heart of Jesus, Cebu City', '10.3088973,123.8990527')} className="group border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
                     <span className="flex items-center gap-2">
                       Directions
                       <span className="group-hover:translate-x-1 transition-transform">🗺️</span>
@@ -182,13 +242,13 @@ export default function WeddingDetails() {
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
-                  <button className="group bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
+                  <button onClick={() => addToCalendar('reception')} className="group bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-700 hover:to-rose-800 text-white font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-md hover:shadow-lg btn-romantic">
                     <span className="flex items-center gap-2">
                       Add to Calendar
                       <span className="group-hover:rotate-12 transition-transform">📅</span>
                     </span>
                   </button>
-                  <button className="group border-2 border-rose-600 text-rose-700 hover:bg-rose-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
+                  <button onClick={() => openDirections('City Sports Club Cebu, Inc., Cebu City', '10.316876,123.9070653')} className="group border-2 border-rose-600 text-rose-700 hover:bg-rose-50 font-poppins font-medium px-6 py-2.5 rounded-full transition-all duration-300 text-sm shadow-sm hover:shadow-md">
                     <span className="flex items-center gap-2">
                       Directions
                       <span className="group-hover:translate-x-1 transition-transform">🗺️</span>
@@ -514,22 +574,79 @@ export default function WeddingDetails() {
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 text-left mt-8">
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-emerald-100/50 shadow-md elegant-card hover:bg-white transition-colors">
-                <h4 className="font-poppins font-semibold text-emerald-900 mb-3 text-lg">BPI</h4>
-                <p className="font-poppins text-sm text-emerald-800 font-mono">9119451679</p>
-                <p className="font-poppins text-sm text-emerald-800 mt-2">Karen Campos / Erin John Alfrey Baysa</p>
+              {/* BPI Card */}
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-red-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-red-900 mb-4 text-lg">BPI</h4>
+                <div className="mb-4 flex justify-center cursor-pointer group" onClick={() => { setSelectedPaymentImage('/bpi.jpg'); setSelectedPaymentTitle('BPI - 9119451679'); setPaymentModalOpen(true); }}>
+                  <div className="relative">
+                    <Image
+                      src="/bpi.jpg"
+                      alt="BPI Payment QR Code"
+                      width={200}
+                      height={250}
+                      className="rounded-lg border border-red-100 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                      <div className="bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
+                        <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p className="font-poppins text-sm text-emerald-800 font-mono text-center mb-2">9119451679</p>
+                <p className="font-poppins text-xs text-emerald-700 text-center">Karen Campos / Erin John Alfrey Baysa</p>
               </div>
               
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-rose-100/50 shadow-md elegant-card hover:bg-white transition-colors">
-                <h4 className="font-poppins font-semibold text-rose-900 mb-3 text-lg">BDO</h4>
-                <p className="font-poppins text-sm text-emerald-800 font-mono">0043 7137 4169</p>
-                <p className="font-poppins text-sm text-emerald-800 mt-2">Erin John Alfrey Baysa</p>
+              {/* BDO Card */}
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-blue-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-blue-900 mb-4 text-lg">BDO</h4>
+                <div className="mb-4 flex justify-center cursor-pointer group" onClick={() => { setSelectedPaymentImage('/bdo.jpg'); setSelectedPaymentTitle('BDO - 0043 7137 4169'); setPaymentModalOpen(true); }}>
+                  <div className="relative">
+                    <Image
+                      src="/bdo.jpg"
+                      alt="BDO Payment QR Code"
+                      width={200}
+                      height={250}
+                      className="rounded-lg border border-blue-100 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                      <div className="bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p className="font-poppins text-sm text-emerald-800 font-mono text-center mb-2">0043 7137 4169</p>
+                <p className="font-poppins text-xs text-emerald-700 text-center">Erin John Alfrey Baysa</p>
               </div>
               
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-amber-100/50 shadow-md elegant-card hover:bg-white transition-colors">
-                <h4 className="font-poppins font-semibold text-amber-900 mb-3 text-lg">E-transfer</h4>
-                <p className="font-poppins text-sm text-emerald-800 font-mono">karenncamps@gmail.com</p>
-                <p className="font-poppins text-sm text-emerald-800 mt-2">613-863-1218 (Karen Campos)</p>
+              {/* GCash Card */}
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border-2 border-blue-100/50 shadow-md elegant-card hover:bg-white transition-colors">
+                <h4 className="font-poppins font-semibold text-blue-900 mb-4 text-lg">GCash</h4>
+                <div className="mb-4 flex justify-center cursor-pointer group" onClick={() => { setSelectedPaymentImage('/gcash.png'); setSelectedPaymentTitle('GCash - ER&apos;N B.'); setPaymentModalOpen(true); }}>
+                  <div className="relative">
+                    <Image
+                      src="/gcash.png"
+                      alt="GCash Payment QR Code"
+                      width={200}
+                      height={250}
+                      className="rounded-lg border border-blue-100 group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                      <div className="bg-white/90 rounded-full p-2 opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300">
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p className="font-poppins text-xs text-emerald-700 text-center">ER&apos;N B.</p>
+                <p className="font-poppins text-xs text-emerald-700 text-center">Mobile No.: 099-••••042</p>
               </div>
               </div>
             </div>
@@ -550,6 +667,61 @@ export default function WeddingDetails() {
         isOpen={isModalOpen}
         onClose={closeModal}
       />
+
+      {/* Payment QR Code Modal */}
+      {paymentModalOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setPaymentModalOpen(false)}>
+          <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-screen overflow-y-auto relative" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setPaymentModalOpen(false)}
+              className="absolute top-4 right-4 bg-gradient-to-br from-emerald-100 to-emerald-200 hover:from-emerald-200 hover:to-emerald-300 text-emerald-700 rounded-full p-3 transition-all duration-300 shadow-lg z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="p-8 text-center">
+              <h3 className="font-playfair text-3xl font-bold text-emerald-900 mb-6">{selectedPaymentTitle}</h3>
+              <div className="flex justify-center">
+                <Image
+                  src={selectedPaymentImage}
+                  alt="Payment QR Code Full Size"
+                  width={500}
+                  height={600}
+                  className="rounded-2xl shadow-lg border-2 border-emerald-100 max-w-full h-auto"
+                />
+              </div>
+              <p className="font-poppins text-emerald-700 mt-6 text-center">
+                Click the image to zoom or scan the QR code
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 z-40 animate-bounce group"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 group-hover:scale-110 transition-transform" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
