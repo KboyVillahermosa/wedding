@@ -8,13 +8,14 @@ export default function RSVPForm() {
     name: '',
     email: '',
     message: '',
+    status: 'attend' as 'attend' | 'decline',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -37,13 +38,14 @@ export default function RSVPForm() {
         throw new Error('Please enter your email');
       }
 
-      // Insert RSVP into Supabase
+      // Insert RSVP into Supabase with status
       const { error } = await supabase
         .from('rsvps')
         .insert({
           primary_name: formData.name.trim(),
           email: formData.email.trim(),
           message: formData.message.trim() || null,
+          status: formData.status,
           submitted_at: new Date().toISOString(),
         });
 
@@ -68,6 +70,7 @@ export default function RSVPForm() {
             name: formData.name.trim(),
             email: formData.email.trim(),
             message: formData.message.trim() || null,
+            status: formData.status,
           }),
         });
       } catch (notificationError) {
@@ -81,6 +84,7 @@ export default function RSVPForm() {
         name: '',
         email: '',
         message: '',
+        status: 'attend',
       });
     } catch (error: unknown) {
       console.error('Error submitting RSVP:', error);
@@ -118,8 +122,10 @@ export default function RSVPForm() {
           <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2">
             We&apos;ve received your RSVP
           </p>
-          <p className="font-poppins text-lg text-emerald-800 mb-8">
-            We can&apos;t wait to celebrate with you! 💕
+          <p className="font-poppins text-lg text-emerald-800 mb-4">
+            {formData.status === 'attend' 
+              ? "We can&apos;t wait to celebrate with you! 💕" 
+              : "We&apos;re sorry you can&apos;t make it, but thank you for letting us know! 💙"}
           </p>
           <button
             onClick={() => setSubmitStatus('idle')}
@@ -198,6 +204,54 @@ export default function RSVPForm() {
           />
         </div>
 
+        {/* RSVP Status */}
+        <div>
+          <label htmlFor="status" className="block font-poppins font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+            <span>📋</span>
+            Will you be attending? <span className="text-rose-500">*</span>
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            <label className={`relative cursor-pointer rounded-xl border-2 p-4 transition-all duration-300 ${
+              formData.status === 'attend'
+                ? 'border-emerald-500 bg-emerald-50 shadow-md'
+                : 'border-emerald-200 bg-white hover:border-emerald-300'
+            }`}>
+              <input
+                type="radio"
+                name="status"
+                value="attend"
+                checked={formData.status === 'attend'}
+                onChange={handleInputChange}
+                className="sr-only"
+              />
+              <div className="text-center">
+                <div className="text-3xl mb-2">✅</div>
+                <div className="font-poppins font-semibold text-emerald-900">Yes, I&apos;ll attend</div>
+                <div className="font-poppins text-sm text-emerald-700 mt-1">We can&apos;t wait to see you!</div>
+              </div>
+            </label>
+            <label className={`relative cursor-pointer rounded-xl border-2 p-4 transition-all duration-300 ${
+              formData.status === 'decline'
+                ? 'border-rose-500 bg-rose-50 shadow-md'
+                : 'border-rose-200 bg-white hover:border-rose-300'
+            }`}>
+              <input
+                type="radio"
+                name="status"
+                value="decline"
+                checked={formData.status === 'decline'}
+                onChange={handleInputChange}
+                className="sr-only"
+              />
+              <div className="text-center">
+                <div className="text-3xl mb-2">❌</div>
+                <div className="font-poppins font-semibold text-rose-900">Sorry, can&apos;t attend</div>
+                <div className="font-poppins text-sm text-rose-700 mt-1">We&apos;ll miss you!</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
         {/* Message */}
         <div>
           <label htmlFor="message" className="block font-poppins font-semibold text-emerald-900 mb-2 flex items-center gap-2">
@@ -211,7 +265,7 @@ export default function RSVPForm() {
             onChange={handleInputChange}
             rows={4}
             className="w-full px-5 py-3.5 rounded-xl border-2 border-emerald-200/50 bg-white/80 backdrop-blur-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200/50 outline-none font-poppins text-emerald-900 resize-none transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg"
-            placeholder="Leave us a message..."
+            placeholder={formData.status === 'attend' ? "Leave us a message..." : "Let us know why you can&apos;t make it (optional)"}
           />
         </div>
 

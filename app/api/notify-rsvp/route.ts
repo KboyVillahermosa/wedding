@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, status } = body;
 
     if (!name || !email) {
       return NextResponse.json(
@@ -16,7 +16,8 @@ export async function POST(request: NextRequest) {
     // Email notification recipient - can be changed to any email address
     // You can also set it via environment variable: NOTIFICATION_EMAIL
     const recipientEmail = process.env.NOTIFICATION_EMAIL || 'erin.baysa@gmail.com';
-    const subject = `New RSVP from ${name}`;
+    const statusText = status === 'attend' ? 'Will Attend' : 'Cannot Attend';
+    const subject = `New RSVP from ${name} - ${statusText}`;
     const emailBody = `
       <html>
         <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
@@ -25,6 +26,16 @@ export async function POST(request: NextRequest) {
             <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
               <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
               <p style="margin: 10px 0;"><strong>Email:</strong> ${email}</p>
+              <p style="margin: 10px 0;">
+                <strong>Status:</strong> 
+                <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; margin-left: 8px; font-weight: 600; ${
+                  status === 'attend' 
+                    ? 'background-color: #d1fae5; color: #065f46;' 
+                    : 'background-color: #fee2e2; color: #991b1b;'
+                }">
+                  ${status === 'attend' ? '✅ Will Attend' : '❌ Cannot Attend'}
+                </span>
+              </p>
               ${message ? `<p style="margin: 10px 0;"><strong>Message:</strong> ${message}</p>` : ''}
               <p style="margin: 10px 0;"><strong>Submitted:</strong> ${new Date().toLocaleString('en-US', { 
                 year: 'numeric', 
