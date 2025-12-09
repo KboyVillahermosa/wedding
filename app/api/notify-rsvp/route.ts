@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     `;
 
     // Get Resend API key from environment variables
-    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_VqmCJ7H6_BPiRT9QbYgYTxV5AtMB7miv2';
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_Fzzw8sqe_HTywLS5UVzX6AtQE6TLjGcxt';
     
     if (!RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not set in environment variables');
