@@ -61,28 +61,6 @@ export default function AdminDashboard() {
     }
   };
 
-  const updateStatus = async (id: string, newStatus: 'attend' | 'decline' | 'pending') => {
-    try {
-      const { error: updateError } = await supabase
-        .from('rsvps')
-        .update({ status: newStatus })
-        .eq('id', id);
-
-      if (updateError) {
-        throw updateError;
-      }
-
-      // Update local state
-      setRsvps(rsvps.map(rsvp => 
-        rsvp.id === id ? { ...rsvp, status: newStatus } : rsvp
-      ));
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Failed to update status';
-      setError(message);
-      console.error('Error updating status:', err);
-    }
-  };
-
   const handleLogout = async () => {
     await supabase.auth.signOut();
     localStorage.removeItem('admin_authenticated');
@@ -233,50 +211,78 @@ export default function AdminDashboard() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-emerald-50">
-                  <tr>
-                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900">Name</th>
-                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900">Email</th>
-                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900">Message</th>
-                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900">Status</th>
-                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900">Submitted</th>
+                <thead>
+                  <tr className="border-b-2 border-emerald-200">
+                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900 text-sm uppercase tracking-wider">Name</th>
+                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900 text-sm uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900 text-sm uppercase tracking-wider">Status</th>
+                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900 text-sm uppercase tracking-wider">Message</th>
+                    <th className="px-6 py-4 text-left font-poppins font-semibold text-emerald-900 text-sm uppercase tracking-wider">Submitted</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-emerald-100">
-                  {rsvps.map((rsvp) => (
-                    <tr key={rsvp.id} className="hover:bg-emerald-50/50 transition-colors">
-                      <td className="px-6 py-4 font-poppins text-emerald-900 font-medium">{rsvp.primary_name}</td>
-                      <td className="px-6 py-4 font-poppins text-emerald-700">{rsvp.email}</td>
-                      <td className="px-6 py-4 font-poppins text-emerald-700">
-                        {rsvp.message || <span className="text-emerald-400 italic">No message</span>}
+                <tbody className="divide-y divide-emerald-50">
+                  {rsvps.map((rsvp, index) => (
+                    <tr 
+                      key={rsvp.id} 
+                      className={`transition-colors ${
+                        index % 2 === 0 
+                          ? 'bg-white' 
+                          : 'bg-emerald-50/30'
+                      } hover:bg-emerald-100/50`}
+                    >
+                      <td className="px-6 py-4">
+                        <div className="font-poppins font-semibold text-emerald-900">{rsvp.primary_name}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <select
-                            value={rsvp.status || 'pending'}
-                            onChange={(e) => updateStatus(rsvp.id, e.target.value as 'attend' | 'decline' | 'pending')}
-                            className={`font-poppins text-sm font-semibold px-3 py-1.5 rounded-full border-2 transition-all duration-200 cursor-pointer ${
-                              rsvp.status === 'attend'
-                                ? 'bg-green-100 border-green-300 text-green-700 hover:bg-green-200'
-                                : rsvp.status === 'decline'
-                                ? 'bg-red-100 border-red-300 text-red-700 hover:bg-red-200'
-                                : 'bg-amber-100 border-amber-300 text-amber-700 hover:bg-amber-200'
-                            }`}
-                          >
-                            <option value="pending">⏳ Pending</option>
-                            <option value="attend">✅ Attend</option>
-                            <option value="decline">❌ Decline</option>
-                          </select>
+                        <div className="font-poppins text-emerald-700 text-sm">{rsvp.email}</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${
+                          rsvp.status === 'attend'
+                            ? 'bg-green-50 text-green-700 border border-green-200'
+                            : rsvp.status === 'decline'
+                            ? 'bg-red-50 text-red-700 border border-red-200'
+                            : 'bg-amber-50 text-amber-700 border border-amber-200'
+                        }`}>
+                          {rsvp.status === 'attend' && (
+                            <>
+                              <span className="text-sm">✅</span>
+                              <span>Will Attend</span>
+                            </>
+                          )}
+                          {rsvp.status === 'decline' && (
+                            <>
+                              <span className="text-sm">❌</span>
+                              <span>Cannot Attend</span>
+                            </>
+                          )}
+                          {(rsvp.status === 'pending' || !rsvp.status) && (
+                            <>
+                              <span className="text-sm">⏳</span>
+                              <span>Pending</span>
+                            </>
+                          )}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="font-poppins text-emerald-700 text-sm max-w-md">
+                          {rsvp.message ? (
+                            <span className="line-clamp-2">{rsvp.message}</span>
+                          ) : (
+                            <span className="text-emerald-400 italic">No message</span>
+                          )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 font-poppins text-sm text-emerald-600">
-                        {new Date(rsvp.submitted_at).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
+                      <td className="px-6 py-4">
+                        <div className="font-poppins text-sm text-emerald-600 whitespace-nowrap">
+                          {new Date(rsvp.submitted_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </div>
                       </td>
                     </tr>
                   ))}

@@ -113,29 +113,29 @@ export default function RSVPForm() {
         <div className="relative z-10">
           <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-6 shadow-lg animate-float">
             <span className="text-5xl">✓</span>
-          </div>
+        </div>
           <h3 className="font-playfair text-4xl lg:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
-              Thank You!
+          Thank You!
             </span>
-          </h3>
+        </h3>
           <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2">
-            We&apos;ve received your RSVP
-          </p>
+          We&apos;ve received your RSVP
+        </p>
           <p className="font-poppins text-lg text-emerald-800 mb-4">
             {formData.status === 'attend' 
               ? "We can&apos;t wait to celebrate with you! 💕" 
               : "We&apos;re sorry you can&apos;t make it, but thank you for letting us know! 💙"}
-          </p>
-          <button
-            onClick={() => setSubmitStatus('idle')}
+        </p>
+        <button
+          onClick={() => setSubmitStatus('idle')}
             className="group inline-block bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-poppins font-semibold text-lg px-12 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl btn-romantic"
-          >
+        >
             <span className="flex items-center gap-2">
-              Submit Another RSVP
+          Submit Another RSVP
               <span className="group-hover:rotate-12 transition-transform">💌</span>
             </span>
-          </button>
+        </button>
         </div>
       </div>
     );
@@ -148,24 +148,24 @@ export default function RSVPForm() {
       <div className="relative z-10">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-100 to-rose-100 rounded-full mb-6 mx-auto shadow-lg animate-float">
           <span className="text-3xl">💌</span>
-        </div>
+      </div>
         <h3 className="font-playfair text-4xl lg:text-5xl font-bold mb-4 text-center">
           <span className="bg-gradient-to-r from-emerald-700 to-rose-600 bg-clip-text text-transparent">
-            Ready to Celebrate?
+        Ready to Celebrate?
           </span>
-        </h3>
+      </h3>
         <div className="flex items-center justify-center gap-2 mb-4">
           <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-emerald-400"></div>
           <span className="text-emerald-400">❦</span>
           <div className="w-16 h-px bg-gradient-to-r from-emerald-400 via-rose-400 to-transparent"></div>
         </div>
         <p className="font-dancing text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-rose-500 mb-2 text-center">
-          We can&apos;t wait to celebrate with you!
-        </p>
+        We can&apos;t wait to celebrate with you!
+      </p>
         <p className="font-poppins text-lg text-emerald-800 mb-8 text-center flex items-center justify-center gap-2">
           <span>📅</span>
-          Please RSVP by December 19th
-        </p>
+        Please RSVP by December 19th
+      </p>
 
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
         {/* Name */}
@@ -263,7 +263,7 @@ export default function RSVPForm() {
             onChange={handleInputChange}
             rows={4}
             className="w-full px-5 py-3.5 rounded-xl border-2 border-emerald-200/50 bg-white/80 backdrop-blur-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200/50 outline-none font-poppins text-emerald-900 resize-none transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg"
-            placeholder={formData.status === 'attend' ? "Leave us a message..." : "Let us know why you can&apos;t make it (optional)"}
+            placeholder={formData.status === 'attend' ? "Leave us a message..." : "Leave us a message (optional)"}
           />
         </div>
 
