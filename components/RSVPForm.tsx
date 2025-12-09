@@ -227,7 +227,6 @@ export default function RSVPForm() {
               <div className="text-center">
                 <div className="text-3xl mb-2">✅</div>
                 <div className="font-poppins font-semibold text-emerald-900">Yes, I&apos;ll attend</div>
-                <div className="font-poppins text-sm text-emerald-700 mt-1">We can&apos;t wait to see you!</div>
               </div>
             </label>
             <label className={`relative cursor-pointer rounded-xl border-2 p-4 transition-all duration-300 ${
@@ -246,7 +245,6 @@ export default function RSVPForm() {
               <div className="text-center">
                 <div className="text-3xl mb-2">❌</div>
                 <div className="font-poppins font-semibold text-rose-900">Sorry, can&apos;t attend</div>
-                <div className="font-poppins text-sm text-rose-700 mt-1">We&apos;ll miss you!</div>
               </div>
             </label>
           </div>
