@@ -57,6 +57,24 @@ export default function RSVPForm() {
         throw new Error(error.message || error.details || 'Failed to submit RSVP. Please check your connection and try again.');
       }
 
+      // Send email notification to Erin (don't wait for it to complete)
+      try {
+        await fetch('/api/notify-rsvp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim() || null,
+          }),
+        });
+      } catch (notificationError) {
+        // Log but don't fail the RSVP submission if notification fails
+        console.error('Failed to send notification email:', notificationError);
+      }
+
       setSubmitStatus('success');
       // Reset form
       setFormData({

@@ -26,7 +26,7 @@ export default function Header() {
               </div>
               <h1 className="font-playfair text-6xl lg:text-8xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-rose-500 bg-clip-text text-transparent">
-                  Karen & Erin
+                Karen & Erin
                 </span>
               </h1>
               
@@ -45,15 +45,15 @@ export default function Header() {
             <div className="font-poppins space-y-4 text-emerald-800">
               <div className="flex items-center justify-center lg:justify-start gap-3">
                 <span className="text-2xl">📅</span>
-                <p className="text-2xl lg:text-3xl font-light">
-                  February 12th, 2026
-                </p>
+              <p className="text-2xl lg:text-3xl font-light">
+                February 12th, 2026
+              </p>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-3">
                 <span className="text-xl">📍</span>
-                <p className="text-lg lg:text-xl text-emerald-700">
-                  Cebu, Philippines • 3:30 PM
-                </p>
+              <p className="text-lg lg:text-xl text-emerald-700">
+                Cebu, Philippines • 3:30 PM
+              </p>
               </div>
             </div>
             
@@ -64,7 +64,7 @@ export default function Header() {
                 className="group relative inline-block bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-600 hover:from-emerald-700 hover:via-emerald-800 hover:to-emerald-700 text-white font-poppins font-semibold px-10 py-4 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl text-center btn-romantic overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  RSVP Now
+                RSVP Now
                   <span className="group-hover:translate-x-1 transition-transform">💌</span>
                 </span>
               </Link>
